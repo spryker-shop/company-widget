@@ -21,10 +21,6 @@ class CompanyBusinessUnitAddressWidget extends AbstractWidget
      */
     protected const PARAMETER_CURRENT_COMPANY_BUSINESS_UNIT_ADDRESS = 'currentCompanyBusinessUnitAddress';
 
-    /**
-     * @param string $formType
-     * @param \Generated\Shared\Transfer\AddressTransfer $formAddressTransfer
-     */
     public function __construct(string $formType, AddressTransfer $formAddressTransfer)
     {
         $addressProvider = $this->getFactory()
@@ -50,41 +46,21 @@ class CompanyBusinessUnitAddressWidget extends AbstractWidget
         $this->addIsCurrentAddressEmptyParameter($formAddressTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\AddressTransfer $addressTransfer
-     *
-     * @return void
-     */
     protected function addIsCurrentAddressEmptyParameter(AddressTransfer $addressTransfer): void
     {
         $this->addParameter('isCurrentAddressEmpty', $this->isAddressEmpty($addressTransfer));
     }
 
-    /**
-     * @param string $formType
-     *
-     * @return void
-     */
     protected function addFormTypeParameter(string $formType): void
     {
         $this->addParameter('formType', $formType);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\AddressTransfer $formAddressTransfer
-     *
-     * @return void
-     */
     protected function addFormAddressTransferParameter(AddressTransfer $formAddressTransfer): void
     {
         $this->addParameter('formAddressTransfer', $formAddressTransfer);
     }
 
-    /**
-     * @param \SprykerShop\Yves\CompanyWidget\Address\AddressProviderInterface $addressProvider
-     *
-     * @return void
-     */
     protected function addIsApplicableParameter(AddressProviderInterface $addressProvider): void
     {
         $this->addParameter('isApplicable', $addressProvider->companyBusinessUnitAddressesExists());
@@ -128,27 +104,16 @@ class CompanyBusinessUnitAddressWidget extends AbstractWidget
         $this->addParameter('companyBusinessUnitAddresses', $companyBusinessUnitAddresses);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\AddressTransfer|null $currentCompanyBusinessUnitAddressTransfer
-     *
-     * @return void
-     */
     protected function addCurrentCompanyBusinessUnitAddressParameter(?AddressTransfer $currentCompanyBusinessUnitAddressTransfer): void
     {
         $this->addParameter(static::PARAMETER_CURRENT_COMPANY_BUSINESS_UNIT_ADDRESS, $currentCompanyBusinessUnitAddressTransfer);
     }
 
-    /**
-     * @return string
-     */
     public static function getName(): string
     {
         return 'CompanyBusinessUnitAddressWidget';
     }
 
-    /**
-     * @return string
-     */
     public static function getTemplate(): string
     {
         return '@CompanyWidget/views/company-business-unit-address/company-business-unit-address.twig';
@@ -172,11 +137,6 @@ class CompanyBusinessUnitAddressWidget extends AbstractWidget
             : '[]';
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\AddressTransfer $addressTransfer
-     *
-     * @return bool
-     */
     protected function isAddressEmpty(AddressTransfer $addressTransfer): bool
     {
         return ($addressTransfer->getFirstName() === null || $addressTransfer->getFirstName() === ''

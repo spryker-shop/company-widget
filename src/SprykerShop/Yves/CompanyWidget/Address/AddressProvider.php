@@ -46,17 +46,11 @@ class AddressProvider implements AddressProviderInterface
      */
     protected $customerClient;
 
-    /**
-     * @param \SprykerShop\Yves\CompanyWidget\Dependency\Client\CompanyWidgetToCustomerClientInterface $customerClient
-     */
     public function __construct(CompanyWidgetToCustomerClientInterface $customerClient)
     {
         $this->customerClient = $customerClient;
     }
 
-    /**
-     * @return bool
-     */
     public function companyBusinessUnitAddressesExists(): bool
     {
         $customerTransfer = $this->customerClient->getCustomer();
@@ -120,12 +114,6 @@ class AddressProvider implements AddressProviderInterface
         return null;
     }
 
-    /**
-     * @param array $formAddressData
-     * @param \Generated\Shared\Transfer\AddressTransfer $companyBusinessUnitAddressTransfer
-     *
-     * @return bool
-     */
     protected function isSameCompanyUnitAddress(array $formAddressData, AddressTransfer $companyBusinessUnitAddressTransfer): bool
     {
         $companyBusinessUnitAddressData = $companyBusinessUnitAddressTransfer->toArray();
@@ -142,11 +130,6 @@ class AddressProvider implements AddressProviderInterface
         return true;
     }
 
-    /**
-     * @param array $formAddressData
-     *
-     * @return array
-     */
     protected function cleanAddressDefaultFields(array $formAddressData): array
     {
         unset(
@@ -158,22 +141,11 @@ class AddressProvider implements AddressProviderInterface
         return $formAddressData;
     }
 
-    /**
-     * @param array $formAddressData
-     *
-     * @return bool
-     */
     protected function isAddressFormDataEmpty(array $formAddressData): bool
     {
         return !array_filter($formAddressData);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer $companyUnitAddressTransfer
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return \Generated\Shared\Transfer\AddressTransfer
-     */
     protected function mapCompanyBusinessUnitAddressToAddress(
         CompanyUnitAddressTransfer $companyUnitAddressTransfer,
         CustomerTransfer $customerTransfer
@@ -204,11 +176,6 @@ class AddressProvider implements AddressProviderInterface
             ->getAddresses();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return \Generated\Shared\Transfer\CompanyBusinessUnitTransfer|null
-     */
     protected function findCompanyBusinessUnit(CustomerTransfer $customerTransfer): ?CompanyBusinessUnitTransfer
     {
         $companyUserTransfer = $customerTransfer->getCompanyUserTransfer();
@@ -267,32 +234,16 @@ class AddressProvider implements AddressProviderInterface
         return $companyUnitAddressTransfers;
     }
 
-    /**
-     * @param int $idCustomerAddress
-     *
-     * @return string
-     */
     protected function getCustomerAddressKey(int $idCustomerAddress): string
     {
         return sprintf(static::CUSTOMER_ADDRESS_KEY_PATTERN, $idCustomerAddress);
     }
 
-    /**
-     * @param int $idCompanyUnitAddress
-     *
-     * @return string
-     */
     protected function getBusinessUnitAddressKey(int $idCompanyUnitAddress): string
     {
         return sprintf(static::COMPANY_BUSINESS_UNIT_ADDRESS_KEY_PATTERN, $idCompanyUnitAddress);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\AddressTransfer $addressTransfer
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return \Generated\Shared\Transfer\AddressTransfer
-     */
     protected function setAddressCustomerAttributes(
         AddressTransfer $addressTransfer,
         CustomerTransfer $customerTransfer
@@ -303,12 +254,6 @@ class AddressProvider implements AddressProviderInterface
             ->setSalutation($customerTransfer->getSalutation());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\AddressTransfer $addressTransfer
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return \Generated\Shared\Transfer\AddressTransfer
-     */
     protected function hydrateCompanyNameToAddressTransfer(
         AddressTransfer $addressTransfer,
         CustomerTransfer $customerTransfer

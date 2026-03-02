@@ -14,9 +14,6 @@ use SprykerShop\Yves\CompanyWidget\Dependency\Client\CompanyWidgetToCustomerClie
 
 class CompanyWidgetFactory extends AbstractFactory
 {
-    /**
-     * @return \SprykerShop\Yves\CompanyWidget\Address\AddressProviderInterface
-     */
     public function createAddressProvider(): AddressProviderInterface
     {
         return new AddressProvider(
@@ -24,9 +21,6 @@ class CompanyWidgetFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \SprykerShop\Yves\CompanyWidget\Dependency\Client\CompanyWidgetToCustomerClientInterface
-     */
     public function getCustomerClient(): CompanyWidgetToCustomerClientInterface
     {
         return $this->getProvidedDependency(CompanyWidgetDependencyProvider::CLIENT_CUSTOMER);

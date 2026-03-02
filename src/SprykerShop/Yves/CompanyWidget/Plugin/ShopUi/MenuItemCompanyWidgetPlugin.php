@@ -16,9 +16,6 @@ use SprykerShop\Yves\ShopUi\Dependency\Plugin\CompanyWidget\MenuItemCompanyWidge
  */
 class MenuItemCompanyWidgetPlugin extends AbstractWidgetPlugin implements MenuItemCompanyWidgetPluginInterface
 {
-    /**
-     * @return void
-     */
     public function initialize(): void
     {
         $widget = new CompanyMenuItemWidget();

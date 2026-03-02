@@ -25,27 +25,16 @@ class CompanyMenuItemWidget extends AbstractWidget
             ->addParameter('companyName', $this->getCompanyName($customerTransfer));
     }
 
-    /**
-     * @return string
-     */
     public static function getName(): string
     {
         return 'CompanyMenuItemWidget';
     }
 
-    /**
-     * @return string
-     */
     public static function getTemplate(): string
     {
         return '@CompanyWidget/views/menu-item-company-widget/menu-item-company-widget.twig';
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer|null $customerTransfer
-     *
-     * @return string
-     */
     protected function getCompanyName(?CustomerTransfer $customerTransfer): string
     {
         if (
@@ -60,11 +49,6 @@ class CompanyMenuItemWidget extends AbstractWidget
         return '';
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer|null $customerTransfer
-     *
-     * @return bool
-     */
     protected function isVisible(?CustomerTransfer $customerTransfer): bool
     {
         if ($customerTransfer !== null && $customerTransfer->getCompanyUserTransfer() !== null) {

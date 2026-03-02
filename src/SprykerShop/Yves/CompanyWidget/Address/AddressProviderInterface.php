@@ -11,9 +11,6 @@ use Generated\Shared\Transfer\AddressTransfer;
 
 interface AddressProviderInterface
 {
-    /**
-     * @return bool
-     */
     public function companyBusinessUnitAddressesExists(): bool;
 
     /**
