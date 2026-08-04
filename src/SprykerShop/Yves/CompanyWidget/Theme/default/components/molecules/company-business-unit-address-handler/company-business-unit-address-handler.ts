@@ -35,7 +35,7 @@ export default class CompanyBusinessUnitAddressHandler extends Component {
      */
     shippingAddressToggler: HTMLSelectElement;
 
-    protected readyCallback(): void {
+    protected init(): void {
         this.form = <HTMLFormElement>document.querySelector(this.formSelector);
         this.addressesSelects = <HTMLSelectElement[]>Array.from(this.form.querySelectorAll(this.dataSelector));
         this.hiddenDefaultAddressInput = <HTMLInputElement>this.form.querySelector(this.defaultAddressSelector);
